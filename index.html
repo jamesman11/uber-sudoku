@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sudoku</title>
+    <script src = "lib/underscore-min.js"></script>
+    <script src = "lib/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+
+<body>
+    <div class = "main">
+        <div class = "content-group">
+            <div class = "content">
+                <div class = "content-title"> SUDOKU in Uber Way</div>
+                <div class = "content-desc"> Dedicate to Uber's coding challenge by James Man</div>
+            </div>
+        </div>
+        <div class = "sudoku-container">
+          <div class = "sudoku-table main"></div>
+      	</div>
+        <div class = "buttons-group">
+            <div id = "restart" class = "restart-button"> Restart</div>
+            <div id = "check" class = "check-button"> Check</div>
+            <div id = "solve" class = "solve-button"> Solution</div>
+        </div>
+    </div>
+    
+    <script id = 'table_template' type = "text/template">
+    	<% for(var row = 0; row < board.length; row = row + 3 ) { %>
+    		<div class = "sudoku-tr">
+					<% for(var col = 0; col < board[0].length; col = col + 3) { %>
+						<div class = "sudoku-td">
+							<div class = "sudoku-table sub">
+							  <% for(var subRow = 0; subRow < 3; subRow++) { %>
+							  	<div class='sudoku-row'>
+							  		<% for(var subCol = 0; subCol < 3; subCol++) { %>
+							  			<% var defaultClass = board[row + subRow][col + subCol] ? 'default' : '' %>
+							  			<div class='sudoku-column <%= defaultClass %>' row = <%= row + subRow %> col = <%= col + subCol %> > 
+							  				<span> <%= board[row + subRow][col + subCol]%> </span>
+							  				<input maxlength="1"> </input>
+							  			</div>
+							  		<% } %>	
+							  	</div>
+							  <% } %>  
+							</div>
+						</div>				
+					<% } %>	    			
+    		</div>
+    	<% } %>
+    </script>
+    
+    <script src = "js/app.js"></script>
+    <script src = "js/view.js"></script>
+    <script src = "js/logics.js"></script>
+</body>
+
+</html>
