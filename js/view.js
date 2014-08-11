@@ -21,6 +21,13 @@ App.View = {
    	this.renderBoard();
    	this.clickEventBind();
    	
+   	// maintain the count of empty slots for checking win status
+   	this.remainSlots = 0;
+   	for (var row = 0; row < _.keys(App.board).length; row++){
+   		for (var col = 0; col < App.board[0].length; col++){
+   			if (!App.board[row][col]) this.remainSlots++;
+   		}
+   	}
   },
   
   // restart or rerender the board
@@ -58,17 +65,26 @@ App.View = {
   				var keyCode = event.keyCode;
   				if (event.keyCode >= App.View.ONE_KEY_CODE && event.keyCode <= App.View.NINE_KEY_CODE) {
   					var value = $input.val();
-  					App.board[row][col] = parseInt(value); 					
+  					App.board[row][col] = parseInt(value);
+  					App.View.remainSlots--; 					
   					// If there is duplicate, indicate error
   					if (!App.Logics.checkCurrentRowColValid(row, col, parseInt(value))) {
   						$target.addClass('error');
   					}else{
   						$target.removeClass('error');
   					};
+  					
+  					// If no errors exist and there are no more empty slot, it's a win
+  					if (App.View.remainSlots == 0 && $('.error').length == 0){
+  						alert('Congratulations! You have solved the sudoku!');
+  						App.View.gameInit();
+  						return;
+  					}
   					$span.text(value);
   					$span.show();
   					$input.hide();
   				}else{
+  					App.View.remainSlots++;
   					$input.val('');
   				}
   			});
