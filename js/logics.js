@@ -4,11 +4,11 @@ App.Position = function Position(row, col){
 	this.col = col;
 };
 App.Logics = {
-  checkAllValid: function(board){
+  checkAllValid: function(){
     var helper = {};
     var visited = [];
     var errorPositions = [];
-    var boardRowLength = _.keys(App.board).length;
+    var boardRowLength = App.board.length;
     if(boardRowLength != App.SUDOKU_LENGTH) return false;
     var boardColLength = App.board[0].length;
     if(boardColLength != App.SUDOKU_LENGTH) return false;
@@ -80,5 +80,22 @@ App.Logics = {
   		if (c != col && App.board[row][c] == value) return false;
   	}
   	return true;
-  }
+  },
+  
+  // Solve sudoku
+  solve: function(){
+  	for (var row = 0; row < App.SUDOKU_LENGTH; row++){
+  		for (var col = 0; col < App.SUDOKU_LENGTH; col++){
+  			if (!App.board[row][col]){
+  				for (var num = 1; num <= 9; num++){
+  					App.board[row][col] = num;
+  					if (_.isEmpty(this.checkAllValid()) && this.solve()) return true;
+  					App.board[row][col] = null;
+  				}
+  				return false;
+  			}
+  		}
+  	}
+  	return true;
+	}
 };

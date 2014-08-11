@@ -18,12 +18,12 @@ App.View = {
 
 	// initiate a default game, if we want to make a board generator in the future, we just send the array as an argument here
   gameInit: function(){
-   	this.renderBoard();
+   	this.renderBoard(this.defaultGrid);
    	this.clickEventBind();
    	
    	// maintain the count of empty slots for checking win status
    	this.remainSlots = 0;
-   	for (var row = 0; row < _.keys(App.board).length; row++){
+   	for (var row = 0; row < App.board.length; row++){
    		for (var col = 0; col < App.board[0].length; col++){
    			if (!App.board[row][col]) this.remainSlots++;
    		}
@@ -31,11 +31,11 @@ App.View = {
   },
   
   // restart or rerender the board
-  renderBoard: function(){
-  	var $table = _.template($('#table_template').html(), { board: this.defaultGrid });
+  renderBoard: function(board){
+  	var $table = _.template($('#table_template').html(), { board: board });
     var $main = $(".sudoku-table.main");
     $main.empty().append($table);
-    App.board = $.extend(true, {}, this.defaultGrid);  	
+    App.board = $.extend(true, [], board);  	
   },
  
  	// mouse click events binding
@@ -48,7 +48,7 @@ App.View = {
   	if (_.isEmpty(errors)){
   		alert("Sudoku looks good, please continue");
   	}else{
-  		alert("Duplicates found!");
+  		alert("Duplicates found! Please resolve it!");
   	}
  	},
  	
@@ -86,15 +86,33 @@ App.View = {
   				}else{
   					App.View.remainSlots++;
   					$input.val('');
+  					$target.removeClass('error');
   				}
   			});
   		}
  	},
  	
+ 	solveBtnHandler: function(){
+ 		if (App.Logics.solve()){
+ 			App.View.renderBoard(App.board);
+ 		}else{
+ 			alert('No solution for this placement....:(');
+ 		}
+ 	},
+ 	
   clickEventBind: function(){
   	var self = this;
-  	$('#restart').bind('click', self.restartBtnHandler);
-  	$('#check').bind('click', self.checkBtnHandler);
-  	$('.sudoku-column').bind('click', self.columnHandler);
+  	var $restart = $('#restart');
+  	var $check = $('#check');
+  	var $sudokuColumn = $('.sudoku-column');
+  	var $solution = $('#solve');
+  	$restart.unbind();
+  	$check.unbind();
+  	$sudokuColumn.unbind();
+  	$solution.unbind();
+  	$restart.click(self.restartBtnHandler);
+  	$check.click(self.checkBtnHandler);
+  	$sudokuColumn.click(self.columnHandler);
+  	$solution.click(self.solveBtnHandler);
   }
 };
