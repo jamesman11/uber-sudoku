@@ -60,7 +60,7 @@ App.View = {
   					var value = $input.val();
   					App.board[row][col] = parseInt(value); 					
   					// If there is duplicate, indicate error
-  					if (!App.Logics.checkCurrentRowColValid(row, col, parseInt(value), App.board)) {
+  					if (!App.Logics.checkCurrentRowColValid(row, col, parseInt(value))) {
   						$target.addClass('error');
   					}else{
   						$target.removeClass('error');
