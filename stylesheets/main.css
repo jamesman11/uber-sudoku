@@ -9,6 +9,7 @@ html,body{
   margin: auto;
   text-align: center;
 }
+
 /* content group */
 .content-group{
 	background-image: url(https://d1a3f4spazzrp4.cloudfront.net/web-fresh/pattern-grid-dark@1x.gif);
@@ -66,9 +67,11 @@ html,body{
   display: inline-block;
   height: 163px;
 }
+
 .sudoku-row {
   display: table-row;
 }
+
 .sudoku-column {
   display: table-cell;
   border: 1px solid #636366;
@@ -81,12 +84,15 @@ html,body{
   vertical-align: middle;
   font-size: 20px;
 }
+
 .sudoku-column.default{
 	cursor: default;
 }
+
 .sudoku-column.error{
 	border-color: #f32f00;
 }
+
 .sudoku-column input{
 	border: 0px;
   background: transparent;
@@ -101,8 +107,14 @@ html,body{
   display: none;
   font-family: 'Open Sans', sans-serif;
 }
+
 .sudoku-column:hover{
   background-color: rgba(140,140,143,0.2);
+  color: #26b4d4;
+}
+
+.sudoku-column.hover{
+	background-color: rgba(140,140,143,0.2);
   color: #26b4d4;
 }
 

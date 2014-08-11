@@ -20,6 +20,7 @@ App.View = {
   gameInit: function(){
    	this.renderBoard(this.defaultGrid);
    	this.clickEventBind();
+   	this.columnHover();
    	
    	// maintain the count of empty slots for checking win status
    	this.remainSlots = 0;
@@ -36,6 +37,18 @@ App.View = {
     var $main = $(".sudoku-table.main");
     $main.empty().append($table);
     App.board = $.extend(true, [], board);  	
+  },
+  
+  columnHover: function(){
+  	$(".sudoku-column").hover(
+  		function(){
+  			$(".sudoku-column[row =" + $(this).attr('row') + "]").addClass('hover');
+  			$(".sudoku-column[col =" + $(this).attr('col') + "]").addClass('hover');
+  		}, function(){
+  			$(".sudoku-column[row =" + $(this).attr('row') + "]").removeClass('hover');
+  			$(".sudoku-column[col =" + $(this).attr('col') + "]").removeClass('hover');
+  		}
+  	)
   },
  
  	// mouse click events binding
@@ -57,10 +70,13 @@ App.View = {
   		var $span = $target.find('span');
   		var row = parseInt($target.attr('row'));
   		var col = parseInt($target.attr('col'));
-  		$span.hide();
   		if (!$target.hasClass('default')){ 		
   			var $input = $target.find('input');
+  			$span.hide();
   			$input.show().focus();
+  			
+  			// If there is error in the column, once the user click, we clear the input for the user
+  			if ($target.hasClass('error')) $input.val('');
   			$input.keyup(function(event){
   				var keyCode = event.keyCode;
   				if (event.keyCode >= App.View.ONE_KEY_CODE && event.keyCode <= App.View.NINE_KEY_CODE) {
