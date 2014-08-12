@@ -1,4 +1,9 @@
-html,body{
+html{
+	height: 100%;
+	width: 100%;	
+}
+
+body{
   width: 100%;
   height: 100%;
   background-color: #202024;
@@ -8,15 +13,19 @@ html,body{
 .main{
   margin: auto;
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 /* content group */
 .content-group{
-	background-image: url(https://d1a3f4spazzrp4.cloudfront.net/web-fresh/pattern-grid-dark@1x.gif);
-  width: 570px;
-	height: 108px;
+	background-image: url(../images/standalone-grid.png);
+ 	width: 56%;
+	max-width: 504px;
+	padding: 20px 0px;
+	min-width: 312px;
 	margin: auto;
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 20px;
 }
 
@@ -24,10 +33,9 @@ html,body{
   padding: 10px 20px;
   border-top: 1px solid #1fbad6;
   border-bottom: 1px solid #1fbad6;
-  width: 440px;
+  width: 78%;
   margin: auto;
   position: relative;
-	top: 18px;
 }
 
 .content-title{
@@ -42,9 +50,13 @@ html,body{
 
 /* sudoku tables*/
 .sudoku-container{
-  width: 500px;
-  height: 522px;
-  padding-top: 20px;
+  width: 50%;
+  height: 60%;
+  min-height: 374px;
+  max-height: 588px;
+ 	padding: 10px;
+ 	max-width: 500px;
+ 	min-width: 357px;
   margin: auto;
   background-color: rgba(192,192,200,0.2);
   border: 1px solid #1fbad6;
@@ -53,6 +65,8 @@ html,body{
 .sudoku-table {
   display: table;
   margin: auto;
+  height: 100%;
+	width: 100%;
 }
 
 .sudoku-table.sub{
@@ -60,12 +74,15 @@ html,body{
 }
 
 .sudoku-tr{
+	height: 32%;
+	width: 100%;
   display: table-row;
 }
 
 .sudoku-td{
   display: inline-block;
-  height: 163px;
+  width: 33%;
+  height: 100%;
 }
 
 .sudoku-row {
@@ -77,8 +94,8 @@ html,body{
   border: 1px solid #636366;
   color: white;
   cursor: pointer;
-  width: 48px;
-  height: 53px;
+  width: 20%;
+	height: 20%;
   cursor: pointer;
   text-align: center;
   vertical-align: middle;
@@ -87,16 +104,20 @@ html,body{
 
 .sudoku-column.default{
 	cursor: default;
+	color: #F2CFA4;
 }
 
 .sudoku-column.error{
-	border-color: #f32f00;
+	border: 2px solid #f32f00;
 }
 
 .sudoku-column input{
 	border: 0px;
   background: transparent;
-  width: 40px;
+  width: 9%;
+  min-width: 4px;
+  height: 42%;
+	min-height: 21px;
   outline: none;
   color: white;
   font-size: 20px;
@@ -120,7 +141,9 @@ html,body{
 
 /* game buttons */
 .buttons-group{
-  margin-top: 20px;
+  margin: auto;
+	position: relative;
+	top: 10px;
 }
 
 .restart-button, .check-button, .solve-button{
@@ -133,17 +156,80 @@ html,body{
   font-size: 14px;
   height: 42px;
   line-height: 42px;
-  padding: 0 35px;
+  min-width: 90px;
+  max-width: 144px;
+	width: 9%;
   text-shadow: 0 -1px rgba(0,0,0,.08);
   text-transform: uppercase;
   cursor: pointer;
 }
 
 .check-button, .solve-button{
-  margin-left: 30px;
+  margin-left: 18px;
 }
 
 .restart-button:hover, .check-button:hover, .solve-button:hover{
   background-color: #3cc8e1;
 }
 
+/* mobile friendly */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+	
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
