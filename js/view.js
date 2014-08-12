@@ -42,6 +42,7 @@ App.View = {
     App.board = $.extend(true, [], board);  	
   },
   
+  // mouse hover effect, showing all column which is in the same row or same column
   columnHover: function(){
   	$(".sudoku-column").hover(
   		function(){
@@ -59,6 +60,7 @@ App.View = {
  		App.View.gameInit();
  	},
  	
+ 	// handler for check button
  	checkBtnHandler: function(){
  		if (App.isComplete){
  			alert("Sudoku has been solved.");
@@ -72,6 +74,7 @@ App.View = {
   	}
  	},
  	
+ 	// handler for clicking the column
  	columnHandler: function(event){
  			var $target = $(event.currentTarget);
   		var $span = $target.find('span');
@@ -79,7 +82,6 @@ App.View = {
   		var col = parseInt($target.attr('col'));
   		if (!$target.hasClass('default')){ 		
   			var $input = $target.find('input');
-  			var isValueEmpty = _.isEmpty($input.val().trim());
   			$span.hide();
   			$input.show().focus();
   			$input.unbind('keyup focusout');
@@ -126,6 +128,7 @@ App.View = {
   		}
  	},
  	
+ 	// solve button handler
  	solveBtnHandler: function(){
  		App.board = $.extend(true, [], App.View.defaultGrid); 
  		if (App.Logics.solve()){
@@ -136,6 +139,7 @@ App.View = {
  		}
  	},
  	
+ 	// initiate event binding
   clickEventBind: function(){
   	var self = this;
   	var $restart = $('#restart');
