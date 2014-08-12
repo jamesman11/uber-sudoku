@@ -57,6 +57,10 @@ App.View = {
  	},
  	
  	checkBtnHandler: function(){
+ 		if (App.isComplete){
+ 			alert("Sudoku has been solved.");
+ 			return;
+ 		}
  		var errors = App.Logics.checkAllValid();
   	if (_.isEmpty(errors)){
   		alert("Sudoku looks good, please continue");
@@ -109,7 +113,9 @@ App.View = {
  	},
  	
  	solveBtnHandler: function(){
+ 		App.board = $.extend(true, [], App.View.defaultGrid); 
  		if (App.Logics.solve()){
+ 			App.isComplete = true;
  			App.View.renderBoard(App.board);
  		}else{
  			alert('No solution for this placement....:(');

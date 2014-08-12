@@ -87,7 +87,7 @@ App.Logics = {
   	for (var row = 0; row < App.SUDOKU_LENGTH; row++){
   		for (var col = 0; col < App.SUDOKU_LENGTH; col++){
   			if (!App.board[row][col]){
-  				for (var num = 1; num <= 9; num++){
+  				for (var num = 1; num <= App.SUDOKU_LENGTH; num++){
   					App.board[row][col] = num;
   					if (_.isEmpty(this.checkAllValid()) && this.solve()) return true;
   					App.board[row][col] = null;
