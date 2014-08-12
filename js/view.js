@@ -22,16 +22,18 @@ App.View = {
    	this.renderBoard(this.defaultGrid);
    	this.clickEventBind();
    	this.columnHover();
-   	
-   	// maintain the count of empty slots for checking win status
-   	this.remainSlots = 0;
+   	this.checkEmpty();   	
+  },
+  
+  // check current empty slots
+  checkEmpty: function(){
+  	this.remainSlots = 0;
    	for (var row = 0; row < App.board.length; row++){
    		for (var col = 0; col < App.board[0].length; col++){
    			if (!App.board[row][col]) this.remainSlots++;
    		}
    	}
   },
-  
   // restart or rerender the board
   renderBoard: function(board){
   	var $table = _.template($('#table_template').html(), { board: board });
@@ -77,9 +79,10 @@ App.View = {
   		var col = parseInt($target.attr('col'));
   		if (!$target.hasClass('default')){ 		
   			var $input = $target.find('input');
+  			var isValueEmpty = _.isEmpty($input.val().trim());
   			$span.hide();
   			$input.show().focus();
-  			
+  			$input.unbind('keyup focusout');
   			// If there is error in the column, once the user click, we clear the input for the user
   			if ($target.hasClass('error')) $input.val('');
   			$input.keyup(function(event){
@@ -87,7 +90,7 @@ App.View = {
   				if (event.keyCode >= App.View.ONE_KEY_CODE && event.keyCode <= App.View.NINE_KEY_CODE) {
   					var value = $input.val();
   					App.board[row][col] = parseInt(value);
-  					App.View.remainSlots--; 					
+  					App.View.checkEmpty();				
   					// If there is duplicate, indicate error
   					if (!App.Logics.checkCurrentRowColValid(row, col, parseInt(value))) {
   						$target.addClass('error');
@@ -105,13 +108,17 @@ App.View = {
   					$span.show();
   					$input.hide();
   				}else{
-  					App.View.remainSlots++;
+  					App.board[row][col] = null;
   					$input.val('');
   					$target.removeClass('error');
   				}
   			});
   			$input.focusout(function(event){
-  				var value = $(event.currentTarget).val();
+  				var value = $(event.currentTarget).val().trim();
+  				if (_.isEmpty(value)){
+  					App.board[row][col] = null;
+  					if ($target.hasClass('error')) $target.removeClass('error');
+  				}
   				$span.text(value);
   				$span.show();
   				$input.hide();
