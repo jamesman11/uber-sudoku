@@ -18,6 +18,7 @@ App.View = {
 
 	// initiate a default game, if we want to make a board generator in the future, we just send the array as an argument here
   gameInit: function(){
+  	if (App.isComplete) App.isComplete = false;
    	this.renderBoard(this.defaultGrid);
    	this.clickEventBind();
    	this.columnHover();
@@ -108,6 +109,12 @@ App.View = {
   					$input.val('');
   					$target.removeClass('error');
   				}
+  			});
+  			$input.focusout(function(event){
+  				var value = $(event.currentTarget).val();
+  				$span.text(value);
+  				$span.show();
+  				$input.hide();
   			});
   		}
  	},
