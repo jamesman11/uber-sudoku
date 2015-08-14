@@ -1,0 +1,93 @@
+/* mobile friendly */
+/* iphone 5 specific */
+@media (device-height : 568px) 
+   and (device-width : 320px) 
+   and (-webkit-min-device-pixel-ratio: 2){
+  html, body{
+  	width: 300px;
+  	height: 480px;
+  }	
+  
+  .sudoku-container{
+		min-height: 335px;
+		min-width: 284px;
+	}
+}
+
+/* iphone4 and iphone 3gs */
+@media (device-height : 480px) 
+   and (device-width : 320px) {
+  html, body{
+  	width: 305px;
+  	height: 480px;
+  }
+  
+  .sudoku-container{
+		min-height: 287px;
+		min-width: 284px;
+	}
+}
+
+/* google nexus s */
+@media (device-height : 533px) 
+   and (device-width : 320px) {
+  html, body{
+  	width: 305px;
+  	height: 480px;
+  }
+  
+  .sudoku-container{
+		min-height: 287px;
+		min-width: 284px;
+	}
+}
+
+/* google nexus s */
+@media (device-height : 640px) 
+   and (device-width : 360px) {
+  html, body{
+  	width: 345px;
+  	height: 480px;
+  }
+  
+  .sudoku-container{
+		min-height: 370px;
+		min-width: 305px;
+	}
+}
+
+/* samsung galaxy note 3 */
+@media (device-height : 960px) 
+   and (device-width : 540px) {
+  html, body{
+  	width: 529px;
+		height: 480px;
+  }
+  
+  .sudoku-container{
+		min-height: 519px;
+		min-width: 482px;
+	}
+}
+
+/* general style for smart phones */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {	
+	.content-group{
+		width: 300px;
+		padding: 0px;
+	}
+	
+	.content-group .content-title{
+		font-size: 16px;	
+	}
+	
+	.content-group .content-desc{
+		font-size: 12px;
+	}
+	
+	.restart-button, .check-button, .solve-button{
+		min-width: 77px;
+	}
+}

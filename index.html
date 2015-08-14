@@ -1,51 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Uber-sudoku by jamesman11</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<head>
+    <title>sudoku</title>
+    <script src = "lib/underscore-min.js"></script>
+    <script src = "lib/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/mobile.css">
+</head>
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/jamesman11/uber-sudoku">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/jamesman11/uber-sudoku/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/jamesman11/uber-sudoku/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
-
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>Uber-sudoku</h1>
-          <p>code example for uber</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/jamesman11">jamesman11</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+<body>
+    <div class = "main">
+        <div class = "content-group">
+            <div class = "content">
+                <div class = "content-title"> SUDOKU in Uber Way</div>
+                <div class = "content-desc"> Dedicate to Uber's coding challenge by James Man</div>
+            </div>
         </div>
-
-        <h1>
-<a name="uber-sudoku" class="anchor" href="#uber-sudoku"><span class="octicon octicon-link"></span></a>uber-sudoku</h1>
-
-<p>overview: this app is a simple sudoku game, which is dedicated to the Uber web app test.</p>
-      </section>
-
+        <div class = "sudoku-container">
+          <div class = "sudoku-table main"></div>
+      	</div>
+        <div class = "buttons-group">
+            <div id = "restart" class = "restart-button"> Restart</div>
+            <div id = "check" class = "check-button"> Check</div>
+            <div id = "solve" class = "solve-button"> Solve</div>
+        </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
-  </body>
+    <script id = 'table_template' type = "text/template">
+    	<% for(var row = 0; row < board.length; row = row + 3 ) { %>
+    		<div class = "sudoku-tr">
+					<% for(var col = 0; col < board[0].length; col = col + 3) { %>
+						<div class = "sudoku-td">
+							<div class = "sudoku-table sub">
+							  <% for(var subRow = 0; subRow < 3; subRow++) { %>
+							  	<div class='sudoku-row'>
+							  		<% for(var subCol = 0; subCol < 3; subCol++) { %>
+							  			<% var defaultClass = board[row + subRow][col + subCol] ? 'default' : '' %>
+							  			<div class='sudoku-column <%= defaultClass %>' row = <%= row + subRow %> col = <%= col + subCol %> > 
+							  				<span> <%= board[row + subRow][col + subCol]%> </span>
+							  				<input maxlength="1"> </input>
+							  			</div>
+							  		<% } %>	
+							  	</div>
+							  <% } %>  
+							</div>
+						</div>				
+					<% } %>	    			
+    		</div>
+    	<% } %>
+    </script>
+    
+    <script src = "js/app.js"></script>
+    <script src = "js/view.js"></script>
+    <script src = "js/logics.js"></script>
+</body>
 </html>

@@ -1,0 +1,173 @@
+html{
+	height: 100%;
+	width: 100%;	
+}
+
+body{
+  width: 100%;
+  height: 100%;
+  background-color: #202024;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.main{
+  margin: auto;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* content group */
+.content-group{
+	background-image: url(../images/standalone-grid.png);
+ 	width: 56%;
+	max-width: 504px;
+	padding: 20px 0px;
+	min-width: 312px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.content{
+  padding: 10px 20px;
+  border-top: 1px solid #1fbad6;
+  border-bottom: 1px solid #1fbad6;
+  width: 78%;
+  margin: auto;
+  position: relative;
+}
+
+.content-title{
+  color: white;
+  font-size: 24px;
+  margin-bottom: 9px;
+}
+
+.content-desc{
+  color: #1fbad6;
+}
+
+/* sudoku tables*/
+.sudoku-container{
+  width: 50%;
+  height: 60%;
+  min-height: 374px;
+  max-height: 588px;
+ 	padding: 10px;
+ 	max-width: 500px;
+ 	min-width: 357px;
+  margin: auto;
+  background-color: rgba(192,192,200,0.2);
+  border: 1px solid #1fbad6;
+}
+
+.sudoku-table {
+  display: table;
+  margin: auto;
+  height: 100%;
+	width: 100%;
+}
+
+.sudoku-table.sub{
+  border: 1px solid #e2e2e7;
+}
+
+.sudoku-tr{
+	height: 32%;
+	width: 100%;
+  display: table-row;
+}
+
+.sudoku-td{
+  display: inline-block;
+  width: 32%;
+  height: 100%;
+}
+
+.sudoku-row {
+  display: table-row;
+}
+
+.sudoku-column {
+  display: table-cell;
+  border: 1px solid #636366;
+  color: white;
+  cursor: pointer;
+  width: 20%;
+	height: 20%;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+.sudoku-column.default{
+	cursor: default;
+	color: #F2CFA4;
+}
+
+.sudoku-column.error{
+	border: 2px solid #f32f00;
+}
+
+.sudoku-column input{
+	border: 0px;
+  background: transparent;
+  width: 30%;
+	min-width: 18px;
+  height: 42%;
+	min-height: 21px;
+  outline: none;
+  color: white;
+  font-size: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+  display: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.sudoku-column:hover{
+  background-color: rgba(140,140,143,0.2);
+  color: #26b4d4;
+}
+
+.sudoku-column.hover{
+	background-color: rgba(140,140,143,0.2);
+  color: #26b4d4;
+}
+
+/* game buttons */
+.buttons-group{
+  margin: auto;
+	position: relative;
+	top: 10px;
+}
+
+.restart-button, .check-button, .solve-button{
+  background-color: #1fbad6;
+  border-color: #1db6d1;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 14px;
+  height: 42px;
+  line-height: 42px;
+  min-width: 90px;
+  max-width: 144px;
+	width: 9%;
+  text-shadow: 0 -1px rgba(0,0,0,.08);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.check-button, .solve-button{
+  margin-left: 18px;
+}
+
+.restart-button:hover, .check-button:hover, .solve-button:hover{
+  background-color: #3cc8e1;
+}
