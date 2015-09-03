@@ -1,7 +1,7 @@
 uber-sudoku
 ===========
 
-This is a simple Sudoku game implementation, you can input number and finally establish a valid complete Sudoku.
+This is a simple Sudoku game implementation, you can input number and finally establish a valid complete Sudoku.[DEMO](http://jamesman11.github.io/uber-sudoku/)
 
 ### Application structure overview:
 --
